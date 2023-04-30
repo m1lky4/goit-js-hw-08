@@ -9,7 +9,7 @@ player.on('timeupdate', throttle((timeupdate) => {
 }, 1000));
     
 let savedTime = localStorage.getItem('videoplayerCurrentTime');
-let parsedTime = JSON.parse(savedTime);
-player.setCurrentTime(parsedTime.seconds);
-
+let parsedTime = savedTime ? JSON.parse(savedTime).seconds : 0;
+player.setCurrentTime(parsedTime);
+localStorage.removeItem('videoplayerCurrentTime');
    

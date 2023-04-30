@@ -12,19 +12,18 @@ function onFormInput(e) {
         email: emailField.value,
         message: messageField.value,
     }
-
     localStorage.setItem("feedback-form-state", JSON.stringify(formData));
 };
-window.addEventListener('load', () => {
-    const formData = JSON.parse(localStorage.getItem('feedback-form-state'));
-    if (formData) {
-        emailField.value = formData.email;
-        messageField.value = formData.message;
-    }
-});
 form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {
     e.preventDefault();
     console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
+    localStorage.removeItem('feedback-form-state');
     form.reset();
+};
+
+const formData = JSON.parse(localStorage.getItem('feedback-form-state'));
+    if (formData) {
+        emailField.value = formData.email;
+        messageField.value = formData.message;
 };
